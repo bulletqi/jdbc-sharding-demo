@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.OrderMapper">
+
+    <!--列和对象属性的对应关系 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.domain.OrderItem" >
+        <result column="order_id" property="orderId" />
+        <result column="user_id" property="userId" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.example.demo.domain.OrderItem">
+        insert into t_order_0 (order_id,user_id) values(#{orderId},#{userId});
+    </insert>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select * from t_order_0
+    </select>
+
+</mapper>
