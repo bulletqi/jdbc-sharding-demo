@@ -28,8 +28,8 @@ public class JdbcShardingDemoApplicationTests {
 	@Test
 	public void insertTest(){
 		OrderItem item = new OrderItem();
-		item.setOrderId(123);
-		item.setUserId(123);
+		item.setOrderId(1111);
+		item.setUserId(1111);
 		mapper.insert(item);
 	}
 }
