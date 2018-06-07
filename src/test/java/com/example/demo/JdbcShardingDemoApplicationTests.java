@@ -19,17 +19,19 @@ public class JdbcShardingDemoApplicationTests {
 	private OrderMapper mapper;
 
 	@Test
+	public void insertTest(){
+		OrderItem item = new OrderItem();
+		item.setOrderId(444);
+		item.setUserId(1111);
+		mapper.insert(item);
+	}
+
+	@Test
 	public void contextLoads() {
 		List<OrderItem> all = mapper.getAll();
 		System.out.println(all.size());
 		all.forEach(System.out::println);
 	}
 
-	@Test
-	public void insertTest(){
-		OrderItem item = new OrderItem();
-		item.setOrderId(1111);
-		item.setUserId(1111);
-		mapper.insert(item);
-	}
+
 }

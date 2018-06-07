@@ -1,6 +1,6 @@
 ### 读写分离
 通过sharding-jdbc项目实现客户端的读写分离，只需要引入jar包并增加相关配置文件即可实现功能，应用层无侵入，使用方式如下:  
-1.增加sharding-jdbc依赖（应用服务不需要在进行单独依赖）
+1.增加sharding-jdbc依赖
 ~~~
 <dependency>
 	<groupId>io.shardingjdbc</groupId>
@@ -45,7 +45,16 @@ spring.datasource.druid.web-stat-filter.url-pattern=/*
 spring.datasource.druid.stat-view-servlet.url-pattern=/druid/*
 spring.datasource.druid.filter.stat.log-slow-sql=true
 ~~~
-> 数据的主从同步由外部的服务实现，同时需要注意同步延迟引起的问题
+> 数据的主从同步由外部的服务实现，同时需要注意同步延迟引起的数据不一致问题
 
 ### 单数据源
-单数据源的配置还是可以采用之前的方式，无需改动
+如果项目中引用sharding-jdbc的依赖,单数据源的配置方式如下，如果采用老的方式，需要去到sharding-jdbc的依赖
+~~~
+# 数据源名称
+sharding.jdbc.datasource.names=ds_source
+sharding.jdbc.datasource.ds_source.type=com.alibaba.druid.pool.DruidDataSource
+sharding.jdbc.datasource.ds_source.driverClassName=com.mysql.jdbc.Driver
+sharding.jdbc.datasource.ds_source.url=jdbc:mysql://127.0.0.1:3306/ds_master?useSSL=false
+sharding.jdbc.datasource.ds_source.username=root
+sharding.jdbc.datasource.ds_source.password=root
+~~~
